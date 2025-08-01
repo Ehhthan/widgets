@@ -1,0 +1,1 @@
+import{c as r,j as e,r as s,B as a}from"./chunks/book-display-zu7MtCte.js";function o(){const t=document.getElementById("minecraft-book");if(!t)return;const n=t.dataset.json||'{text:"None"}';r.createRoot(t).render(e.jsx(s.StrictMode,{children:e.jsx(a,{text:n,maxPages:2})}))}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",o):o();
