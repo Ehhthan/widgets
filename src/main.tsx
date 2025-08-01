@@ -8,8 +8,8 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <HashRouter>
           <Routes>
-              <Route path="/widgets/book" element={<BookDisplay text={'Test'} maxPages={2} />} />
-              <Route path="/widgets/demo/book" element={<BookDisplayDemo />} />
+              <Route path="/book-display" element={<BookDisplay text={'Test'} maxPages={2} />} />
+              <Route path="/demo/book-display" element={<BookDisplayDemo />} />
           </Routes>
       </HashRouter>,
   </StrictMode>,
