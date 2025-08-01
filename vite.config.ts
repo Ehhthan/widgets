@@ -10,4 +10,13 @@ export default defineConfig({
     ],
     base: '/widgets/',
     publicDir: 'public',
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: `index.js`,
+                chunkFileNames: `chunk.js`,
+                assetFileNames: `style.css`,
+            },
+        },
+    },
 })

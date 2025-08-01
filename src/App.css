@@ -40,7 +40,7 @@
     line-height: 0.9;
     max-height: calc(0.9em * 14); /* 14 lines */
     overflow: hidden;
-    white-space: normal;
+    white-space: preserve;
     word-break: break-word;
 }
 
