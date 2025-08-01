@@ -1,8 +1,8 @@
-import './App.css'
+import './book-display.css'
 import MiniMessage from "minimessage-js";
 import {useState} from "react";
 
-function BookDisplay({text, maxPages}: {text: string, maxPages: number}) {
+export function BookDisplay({text, maxPages}: {text: string, maxPages: number}) {
     const [page, setPage] = useState(1);
 
     const component = MiniMessage
@@ -11,10 +11,8 @@ function BookDisplay({text, maxPages}: {text: string, maxPages: number}) {
 
     return (
         <div className={'book-container w-[146px] h-[180px]'}>
-            <img
+            <div
                 className={"absolute -z-[1] "}
-                src={'./textures/book/background.png'}
-                alt="book background"
                 draggable={false}
             />
 
@@ -53,7 +51,7 @@ function BookDisplay({text, maxPages}: {text: string, maxPages: number}) {
 }
 
 
-function App() {
+export function BookDisplayDemo() {
     const [text, setText] = useState(`<rainbow>Thanks for trying this!`);
 
     return (
@@ -73,5 +71,3 @@ function App() {
         </div>
       )
 }
-
-export default App
