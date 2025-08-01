@@ -1,28 +1,32 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from "@tailwindcss/vite";
-import path from "path";
+import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
-    plugins: [
-        react(),
-        tailwindcss(),
-    ],
+    plugins: [react(), tailwindcss()],
     base: '/widgets/',
     publicDir: 'public',
     build: {
+        outDir: 'dist',
+        emptyOutDir: true,
+        target: 'es2015', // for MediaWiki compatibility
         rollupOptions: {
             input: {
                 bookDisplayWidget: path.resolve(__dirname, 'src/book-display/book-display-widget.tsx'),
             },
             output: {
                 entryFileNames: '[name].js',
-                assetFileNames: '[name].css',
-                chunkFileNames: '[name].js', // Optional: makes shared chunks readable
+                assetFileNames: '[name][extname]',
+                chunkFileNames: '[name].js',
             },
+            external: [], // 🚫 Don't externalize React
         },
-        outDir: 'dist',
-        emptyOutDir: true,
+        commonjsOptions: {
+            include: [/node_modules/],
+        },
+    },
+    optimizeDeps: {
+        include: ['react', 'react-dom'],
     },
 })
