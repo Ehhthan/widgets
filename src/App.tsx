@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import MiniMessage from "minimessage-js";
+import {useState} from "react";
+
+function BookDisplay({text, maxPages}: {text: string, maxPages: number}) {
+    const [page, setPage] = useState(1);
+
+    const component = MiniMessage
+        .miniMessage()
+        .deserialize(text);
+
+    return (
+        <div className={'book-container w-[146px] h-[180px]'}>
+            <img
+                className={"absolute -z-[1] "}
+                src={'./textures/book/background.png'}
+                alt="book background"
+                draggable={false}
+            />
+
+            <div className={"absolute right-[19px] top-[12px] book-text text-right"}>
+                Page {page} of {maxPages}
+            </div>
+
+            <div className={"absolute left-[15px] top-[29px] book-text book-text-content select-text"}
+                 dangerouslySetInnerHTML={{__html: MiniMessage.miniMessage().toHTML(component)}}
+            />
+
+            <div
+                className={"absolute book-button book-backward bottom-[11px] left-[27px]"}
+                draggable={false}
+                hidden={page <= 1}
+                onClick={() => {
+                    if (page - 1 > 0) {
+                        setPage(page - 1);
+                    }
+                }}
+            />
+
+            <div
+                className={"absolute book-button book-forward bottom-[11px] right-[27px]"}
+                draggable={false}
+                hidden={page >= maxPages}
+                onClick={() => {
+                    if (page + 1 <= maxPages) {
+                        setPage(page + 1);
+                    }
+                }}
+            />
+
+        </div>
+    );
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [text, setText] = useState(`<rainbow>Thanks for trying this!`);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+                <div className="transform scale-[2] origin-top">
+                    <BookDisplay text={text} maxPages={5} />
+                </div>
+                <div className="h-[200px]" />
+                <p className="font-[Minecraft] text-center">Enter minimessage text here.</p>
+                <textarea
+                    className="border-2 border-black w-80 h-32 font-[Minecraft] p-2 text-sm"
+                    value={text}
+                    onChange={(e) => setText(e.currentTarget.value)}
+                />
+            </div>
+        </div>
+      )
 }
 
 export default App
