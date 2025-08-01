@@ -11,6 +11,6 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/book-display" element={<BookDisplay text={'Test'} maxPages={2} />} />
               <Route path="/demo/book-display" element={<BookDisplayDemo />} />
           </Routes>
-      </HashRouter>,
-  </StrictMode>,
+      </HashRouter>
+  </StrictMode>
 )
