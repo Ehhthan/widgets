@@ -13,14 +13,16 @@ export default defineConfig({
         target: 'es2015', // for MediaWiki compatibility
         rollupOptions: {
             input: {
-                bookDisplayWidget: path.resolve(__dirname, 'src/book-display/book-display-widget.tsx'),
+                bookDisplayWidget: path.resolve(__dirname, 'src/book-display/widget.tsx'),
+                index: path.resolve(__dirname, 'index.html'),
+                main: path.resolve(__dirname, 'src/main.tsx'),
             },
             output: {
                 entryFileNames: '[name].js',
                 assetFileNames: '[name][extname]',
                 chunkFileNames: '[name].js',
             },
-            external: [], // 🚫 Don't externalize React
+            external: [],
         },
         commonjsOptions: {
             include: [/node_modules/],

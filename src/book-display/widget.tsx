@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import '../index.css'
-import { BookDisplay } from './book-display'
+import '../common.css'
+import { BookComponent } from './book-component.tsx'
 
 function init() {
 	const rootEl = document.getElementById('minecraft-book');
@@ -11,7 +11,7 @@ function init() {
 
 	createRoot(rootEl).render(
 		<StrictMode>
-			<BookDisplay text={text} maxPages={2} />
+			<BookComponent text={text} maxPages={2} />
 		</StrictMode>,
 	);
 }

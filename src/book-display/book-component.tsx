@@ -1,8 +1,8 @@
-import './book-display.css'
+import './book-styles.css'
 import MiniMessage from "minimessage-js";
 import {useState} from "react";
 
-export function BookDisplay({text, maxPages}: {text: string, maxPages: number}) {
+export function BookComponent({text, maxPages}: {text: string, maxPages: number}) {
     const [page, setPage] = useState(1);
 
     const component = MiniMessage
@@ -58,7 +58,7 @@ export function BookDisplayDemo() {
         <div className="min-h-screen flex items-center justify-center">
             <div className="flex flex-col items-center gap-4">
                 <div className="transform scale-[2] origin-top">
-                    <BookDisplay text={text} maxPages={5} />
+                    <BookComponent text={text} maxPages={5} />
                 </div>
                 <div className="h-[200px]" />
                 <p className="font-[Minecraft] text-center">Enter minimessage text here.</p>
